@@ -1,0 +1,1 @@
+"""CMYK Preview application package."""
