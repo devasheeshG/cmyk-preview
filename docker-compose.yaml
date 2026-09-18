@@ -1,0 +1,13 @@
+services:
+  cmyk-preview:
+    build: .
+    image: cmyk-preview:latest
+    container_name: cmyk-preview
+    restart: unless-stopped
+    ports:
+      - "8080:8000"
+    healthcheck:
+      test: ["CMD", "/opt/venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
