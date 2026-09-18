@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Preview a PDF with one or more missing CMYK printer inks.">
+    <title>CMYK Preview</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/static/styles.css?v=side-by-side-1">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="CMYK Preview home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>CMYK Preview</span>
+      </a>
+      <a class="test-link" href="/api/test-pdf" download>Download test PDF</a>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">Printer ink simulator</p>
+        <h1>See what your PDF looks like when an ink stops working.</h1>
+        <p class="lede">Upload a PDF and remove one or more process inks. Your file is rendered for this preview and is not saved.</p>
+      </section>
+
+      <section class="workspace" aria-label="PDF preview controls">
+        <form id="preview-form" novalidate>
+          <label class="drop-zone" id="drop-zone" for="pdf-file">
+            <input id="pdf-file" name="file" type="file" accept="application/pdf,.pdf" aria-describedby="file-requirements" required>
+            <span class="upload-icon" aria-hidden="true">↑</span>
+            <strong id="file-label">Choose a PDF or drop it here</strong>
+            <span id="file-requirements">One PDF only · Up to 100 MB · No page limit</span>
+          </label>
+
+          <div class="selected-file" id="selected-file" aria-live="polite" hidden>
+            <span class="pdf-badge" aria-hidden="true">PDF</span>
+            <span class="selected-file-copy">
+              <strong id="selected-file-name"></strong>
+              <span id="selected-file-details"></span>
+            </span>
+            <button class="file-remove" id="remove-file" type="button">Remove</button>
+          </div>
+
+          <fieldset>
+            <legend>Which ink is missing?</legend>
+            <p class="field-help">Select one or more colors to simulate.</p>
+            <div class="ink-grid">
+              <label class="ink-option cyan"><input type="checkbox" name="missing_inks" value="cyan"><span class="ink-dot"></span><span>Cyan</span><small>C</small></label>
+              <label class="ink-option magenta"><input type="checkbox" name="missing_inks" value="magenta"><span class="ink-dot"></span><span>Magenta</span><small>M</small></label>
+              <label class="ink-option yellow"><input type="checkbox" name="missing_inks" value="yellow"><span class="ink-dot"></span><span>Yellow</span><small>Y</small></label>
+              <label class="ink-option black"><input type="checkbox" name="missing_inks" value="black"><span class="ink-dot"></span><span>Black</span><small>K</small></label>
+            </div>
+          </fieldset>
+
+          <button class="primary-button" type="submit" id="submit-button">Create preview</button>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+        </form>
+
+        <aside class="explanation">
+          <span class="registration-mark" aria-hidden="true">+</span>
+          <h2>How it works</h2>
+          <p>Printers build colors by layering cyan, magenta, yellow, and black ink. This tool renders each page, converts it to CMYK, removes the selected ink channels, and converts it back for your screen.</p>
+          <p class="note"><strong>Good approximation, not a press proof.</strong> Paper, printer profiles, overprinting, and spot colors can make real output differ.</p>
+        </aside>
+      </section>
+
+      <section id="results" class="results" hidden>
+        <div class="results-heading">
+          <div><p class="eyebrow">Simulated output</p><h2 id="results-title">Preview</h2></div>
+          <button class="secondary-button" type="button" id="start-over">Start over</button>
+        </div>
+        <div id="page-list" class="page-list"></div>
+      </section>
+    </main>
+
+    <footer><span>CMYK Preview</span><span>Files are processed in memory and not retained.</span></footer>
+    <script src="/static/app.js?v=side-by-side-1" defer></script>
+  </body>
+</html>
