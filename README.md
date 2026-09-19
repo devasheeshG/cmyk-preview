@@ -2,11 +2,9 @@
 
 Upload a PDF, select the printer ink that is not working, and compare every original page with a browser-rendered approximation of the missing-ink output.
 
-![CMYK Preview desktop side-by-side comparison](docs/screenshots/desktop-comparison.png)
+![CMYK Preview homepage](docs/screenshots/homepage-desktop.png)
 
-The comparison view keeps the original PDF page and the simulated page at the same dimensions. On smaller screens, each pair stacks vertically so the difference remains readable.
-
-![CMYK Preview mobile comparison](docs/screenshots/mobile-comparison.png)
+The homepage keeps the workflow focused: choose one PDF, select the missing ink channels, and create a preview. The browser comparison is available after upload.
 
 ## What it does
 
