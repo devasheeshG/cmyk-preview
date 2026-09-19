@@ -5,5 +5,7 @@
 **/__pycache__/
 *.py[cod]
 .env
+.env.*
+!.env.example
+!.env.template
 artifacts/
-

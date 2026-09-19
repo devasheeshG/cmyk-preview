@@ -26,6 +26,12 @@ uv run uvicorn app.main:app --reload --port 8080
 
 Open <http://127.0.0.1:8080>.
 
+## Environment
+
+No environment variables are required for the default setup. The committed
+`.env.example` file documents that baseline, while `.env` and other local
+environment files remain ignored so credentials are not committed.
+
 ## Docker
 
 ```bash
